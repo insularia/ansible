@@ -1,0 +1,9 @@
+---
+- name: "Install AUR packages"
+  ansible.builtin.command:
+    cmd: "paru -S --noconfirm --needed {{ item }}"
+  register: aur_install_output
+  loop: "{{ aur_packages }}"
+  become: false
+  changed_when: "'installing' in aur_install_output.stdout"
+  tags: ["packages", "install_packages", "aur"]

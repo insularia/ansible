@@ -1,0 +1,30 @@
+[servers.freenode]
+server = "irc.freenode.net"
+nickname = "insularia"
+nick_password_file = "/home/amber/.config/halloy/password"
+channels = ["#pdxtech", "#orlug"]
+chathistory = true
+
+[servers.geekshed]
+server = "irc.geekshed.net"
+nickname = "insularia"
+nick_password_file = "/home/amber/.config/halloy/password"
+channels = ["#pdxlinux"]
+chathistory = true
+
+[servers.irchighway]
+server = "irc.irchighway.net"
+nickname = "insularia"
+channels = ["#ebooks"]
+dangerously_accept_invalid_certs = true
+
+[servers.liberachat]
+server = "irc.libera.chat"
+nickname = "insularia"
+nick_password_file = "/home/amber/.config/halloy/password"
+channels = ["ansible-community"]
+
+#[servers.undernet]
+#server = "irc.undernet.org"
+#nickname = "insularia"
+#channels = ["#bookz"]

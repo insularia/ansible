@@ -1,0 +1,26 @@
+---
+- name: "Check if paru is installed"
+  ansible.builtin.command: which paru
+  register: aur_paru_check
+  ignore_errors: true
+  changed_when: false
+  tags: ["aur"]
+
+- name: "Clone paru" # noqa: latest[git]
+  ansible.builtin.git:
+    repo: "https://aur.archlinux.org/paru-git.git"
+    dest: "/tmp/paru"
+    force: true
+  become: true
+  become_user: "{{ username }}"
+  tags: ["aur"]
+  when: aur_paru_check.rc != 0
+
+- name: "Build and install paru" # noqa: no-changed-when
+  ansible.builtin.command:
+    cmd: "makepkg -si --noconfirm"
+    chdir: "/tmp/paru"
+  become: true
+  become_user: "{{ username }}"
+  tags: ["aur"]
+  when: aur_paru_check.rc != 0

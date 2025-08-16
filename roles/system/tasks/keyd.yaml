@@ -1,0 +1,22 @@
+---
+- name: "Configure keyd"
+  ansible.builtin.copy:
+    content: |
+      [ids]
+      *
+      [main]
+      capslock = leftcontrol
+      leftcontrol = leftmeta
+    dest: "/etc/keyd/default.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  tags: ["system", "keyd"]
+
+- name: "Start and enable keyd"
+  ansible.builtin.systemd:
+    name: "keyd.service"
+    enabled: true
+    state: started
+  tags: ["system", "service", "keyd"]

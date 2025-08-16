@@ -1,0 +1,15 @@
+#+TITLE: ansible
+
+** Simple /(for now)/ ansible setup for my personal machines /(currently just my main desktop, piranesi)/. Public for posterity, but you'd need my vault password to do all that much, not that you'd want to.
+
+*** At present:
+- System configuration management
+- User management and dotfiles
+- Package installation and upgrades
+
+*** In the future:
+- Container management
+- ?
+
+
+/See =docs/USAGE.org= for structure info/

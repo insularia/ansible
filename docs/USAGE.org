@@ -1,0 +1,46 @@
+#+TITLE: Usage
+
+* Tags
+
+**packages**
+- **pacman**
+  - pacman_conf
+  - mirrorlist
+  - upgrade_packages
+  - install_packages
+- **aur**
+  - sudoers
+  - upgrade_packages
+  - install_packages
+
+**system**
+- keyd
+- ssh
+
+**users**
+- user
+- dotfiles
+
+
+* Vault
+
+Secrets are stored in =host_vars/*/vault.yaml=
+
+Vault password lives in =~/.ansible_vault=, else =--ask-vault-pass/-J=
+
+
+* Examples
+
+#+BEGIN_EXAMPLE
+# Run everything
+ansible-playbook site.yaml
+
+# Only install/upgrade packages (top-level tag)
+ansible-playbook site.yaml --tags=packages
+
+# Only populate user dotfiles (subtag of users)
+ansible-playbook site.yaml --tags=dotfiles
+
+# Exclude AUR tasks (I decided to set up this repository during a several-day period in which the AUR was being DDoSed)
+ansible-playbook site.yaml --skip-tags=aur
+#+END_EXAMPLE

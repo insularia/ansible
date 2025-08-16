@@ -1,0 +1,17 @@
+alias ls="ls --color"
+alias l="ls -al"
+alias ll="ls -l"
+alias ..="cd .."
+alias swayenv="export SWAYSOCK=`find /run/user/1000 -type s -name 'sway-ipc.*.sock' 2>/dev/null` && export WAYLAND_DISPLAY=wayland-1 && export DISPLAY=tty1"
+
+export EDITOR=emacs
+export BROWSER=firefox
+export TERM=xterm-256color
+export PATH=/home/amber/bin:$PATH
+
+PS1='\[\e[97;1;3m\]\u@\h\[\e[0m\] \[\e[90;3m\]\w\[\e[0m\] \[\e[37m\]\\$\[\e[0m\] '
+
+umask 077
+unset HISTFILE
+
+export PROMPT_COMMAND='printf "\033]0;${HOSTNAME}\007"'

@@ -1,0 +1,38 @@
+---
+- name: "Copy .config files"
+  ansible.builtin.copy:
+    src: "files/{{ item }}"
+    dest: "{{ users_info.home }}/.config/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 'u=rwX,go=rX'
+  with_items:
+    - "alacritty"
+    - "dunst"
+    - "emacs"
+    - "halloy"
+    - "sway"
+    - "systemd"
+    - "tofi"
+    - "waybar"
+    - "waypaper"
+  tags: ["users", "dotfiles"]
+
+- name: "Populate IRC password"
+  ansible.builtin.copy:
+    content: "{{ hostvars[inventory_hostname][username].irc_password }}"
+    dest: "{{ users_info.home }}/.config/halloy/password"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+  tags: ["users", "dotfiles", "irc"]
+
+- name: "Move homedir configs into place"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ users_info.home }}/{{ item | basename | replace('dot_', '.') }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  with_fileglob: "dot_*"
+  tags: ["users", "dotfiles"]

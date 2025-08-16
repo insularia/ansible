@@ -1,0 +1,10 @@
+set {
+  $accent #cccccc
+  $red #ff7200
+  $darkgray #282828
+}
+
+client.focused          $accent $accent $darkgray $accent $accent
+client.focused_inactive $darkgray $darkgray $accent $darkgray $darkgray
+client.unfocused        $darkgray $darkgray $accent $darkgray $darkgray
+client.urgent           $red $red $accent $red $red

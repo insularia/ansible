@@ -1,0 +1,9 @@
+---
+- name: "Upgrade all AUR packages"
+  ansible.builtin.command:
+    cmd: "paru -Syua --noconfirm"
+  register: aur_output
+  become: true
+  become_user: "{{ username }}"
+  changed_when: "'installing' in aur_output.stdout"
+  tags: ["packages", "upgrade_packages", "aur"]

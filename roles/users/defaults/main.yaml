@@ -1,0 +1,4 @@
+---
+users_ssh_dir_path: "{{ users_info.home }}/.ssh"
+users_ssh_privkey_path: "{{ users_ssh_dir_path }}/id_ed25519"
+users_ssh_pubkey_path: "{{ users_ssh_privkey_path }}.pub"

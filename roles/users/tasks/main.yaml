@@ -1,0 +1,15 @@
+---
+- name: "User"
+  ansible.builtin.include_tasks:
+    file: "user.yaml"
+  tags: ["users", "user"]
+
+- name: "SSH Keys"
+  ansible.builtin.include_tasks:
+    file: "ssh.yaml"
+  tags: ["users", "ssh"]
+
+- name: "Config"
+  ansible.builtin.include_tasks:
+    file: "config.yaml"
+  tags: ["users", "dotfiles"]

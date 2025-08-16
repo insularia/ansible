@@ -1,0 +1,8 @@
+---
+- name: "Configure keyd"
+  ansible.builtin.include_tasks:
+    file: "keyd.yaml"
+
+- name: "Configure ssh"
+  ansible.builtin.include_tasks:
+    file: "ssh.yaml"

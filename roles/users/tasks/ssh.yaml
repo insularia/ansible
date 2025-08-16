@@ -1,0 +1,42 @@
+---
+- name: "Ensure existence of ssh directory"
+  ansible.builtin.file:
+    dest: "{{ users_ssh_dir_path }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0700'
+  tags: ["users", "ssh_keys"]
+
+- name: "Check if public key file exists"
+  ansible.builtin.stat:
+    path: "{{ users_ssh_pubkey_path }}"
+  register: users_pubkey_file_stat
+  tags: ["users", "ssh_keys"]
+
+- name: "Populate private key from vaulted variable"
+  ansible.builtin.copy:
+    dest: "{{ users_ssh_privkey_path }}"
+    content: "{{ hostvars[inventory_hostname][username].ssh_privkey }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0600'
+  tags: ["users", "ssh_keys"]
+
+- name: "Extract public key on the target host"
+  ansible.builtin.command:
+    cmd: "ssh-keygen -y -f {{ users_ssh_privkey_path }}"
+  register: users_extracted_pubkey
+  changed_when: not users_pubkey_file_stat.stat.exists
+  when: not users_pubkey_file_stat.stat.exists
+  tags: ["users", "ssh_keys"]
+
+- name: "Copy the extracted public key to a file"
+  ansible.builtin.copy:
+    dest: "{{ users_ssh_pubkey_path }}"
+    content: "{{ users_extracted_pubkey.stdout }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  when: not users_pubkey_file_stat.stat.exists
+  tags: ["users", "ssh_keys"]

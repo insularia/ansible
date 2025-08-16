@@ -1,0 +1,35 @@
+---
+- name: "Populate pacman.conf"
+  ansible.builtin.copy:
+    content: |
+      [options]
+      Architecture = x86_64
+      ILoveCandy
+      Color
+      CheckSpace
+      ParallelDownloads = 25
+      SigLevel = Required DatabaseOptional
+      LocalFileSigLevel = Optional
+      [core]
+      Include = /etc/pacman.d/mirrorlist
+      [extra]
+      Include = /etc/pacman.d/mirrorlist
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+    dest: "/etc/pacman.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  tags: ["packages", "pacman", "pacman_conf"]
+
+- name: "Configure mirrors"
+  ansible.builtin.copy:
+    content: |
+      Server = http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch
+    dest: "/etc/pacman.d/mirrorlist"
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  tags: ["packages", "pacman", "mirrors"]

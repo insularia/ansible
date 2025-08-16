@@ -1,0 +1,7 @@
+---
+- name: "Upgrade all pacman packages"
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+  become: true
+  tags: ["packages", "pacman", "upgrade_packages"]

@@ -1,0 +1,19 @@
+---
+- name: "Create sudoers rule for paru"
+  ansible.builtin.copy:
+    content: "{{ username }} ALL=(ALL) NOPASSWD: /usr/bin/pacman,/usr/bin/makepkg"
+    dest: "/etc/sudoers.d/paru_nopasswd"
+    mode: '0440'
+    owner: root
+    group: root
+  become: true
+  when: state == 'present'
+  tags: ["packages", "aur"]
+
+- name: "Remove sudoers rule for paru"
+  ansible.builtin.file:
+    path: "/etc/sudoers.d/paru_nopasswd"
+    state: absent
+  become: true
+  when: state == 'absent'
+  tags: ["packages", "aur"]

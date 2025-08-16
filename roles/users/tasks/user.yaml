@@ -1,0 +1,23 @@
+---
+- name: "Create {{ username }}"
+  ansible.builtin.user:
+    name: "{{ username }}"
+    password: "{{ hostvars[inventory_hostname][username].password }}"
+    state: present
+    create_home: true
+    shell: "/bin/bash"
+    groups:
+      - "wheel"
+      - "docker"
+    append: true
+  register: users_info
+  tags: ["users", "user"]
+
+- name: "Add root perms to {{ username }}"
+  ansible.builtin.copy:
+    content: "{{ username }} ALL=(ALL) ALL"
+    dest: "/etc/sudoers.d/00_{{ username }}"
+    owner: root
+    group: root
+    mode: '0600'
+  become: true

@@ -1,0 +1,29 @@
+---
+- name: "Sudoers rule"
+  ansible.builtin.include_tasks:
+    file: "sudoers.yaml"
+  vars:
+    state: "present"
+  tags: ["packages", "aur", "sudoers"]
+
+- name: "Package and install paru-git"
+  ansible.builtin.include_tasks:
+    file: "package.yaml"
+  tags: ["packages", "aur"]
+
+- name: "Upgrade AUR packages"
+  ansible.builtin.include_tasks:
+    file: "upgrade.yaml"
+  tags: ["packages", "upgrade_packages", "aur"]
+
+- name: "Install AUR packages"
+  ansible.builtin.include_tasks:
+    file: "install.yaml"
+  tags: ["packages", "install_packages", "aur"]
+
+- name: "Sudoers rule"
+  ansible.builtin.include_tasks:
+    file: "sudoers.yaml"
+  vars:
+    state: "absent"
+  tags: ["packages", "aur", "sudoers"]

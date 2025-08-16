@@ -1,0 +1,132 @@
+* {
+	margin-top: 0px;
+	border-radius: 0px 0px 10px 10px;
+	font-family: "Terminus";
+	font-size: 16px;
+	font-weight: bold;
+	font-style: italic;
+	min-height: 10px;
+	background: transparent;
+	transition: none;
+}
+
+window#waybar {
+	background: transparent;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+	padding-left: 10px;
+	padding-right: 10px;
+	color: transparent;
+	background: transparent;
+}
+
+#workspaces {
+	margin-left: 12px;
+	font-size: 4px;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	background: #282828;
+	border-radius: 0px 0px 10px 10px;
+}
+
+#workspaces button {
+	border-radius: 0px;
+	color: #cccccc;
+	background: transparent;
+	font-size: 16px;
+}
+
+#workspaces button.occupied {
+	background: transparent;
+	font-size: 4px;
+}
+
+#workspaces button.focused {
+	color: #cccccc;
+	border-top: 1.5px solid #cccccc;
+}
+
+#workspaces button:hover {
+	box-shadow: inherit;
+	text-shadow: inherit;
+	color: #999999;
+	border: none;
+	background: linear-gradient(180deg,rgba(40, 40, 40, 1) 0%, rgba(71, 71, 71, 1) 100%);
+	border-top: 1.5px solid #999999;
+	border-radius: 0px;
+}
+
+#workspaces button:first-child:hover{
+	border-bottom-left-radius: 10px;
+}
+
+#workspaces button:last-child:hover{
+	border-bottom-right-radius: 10px;
+}
+
+#tray, #network, #pulseaudio, #clock, #memory, #cpu, #custom-launcher, #custom-media {
+	color: #282828;
+	background: #cccccc;
+	margin-left: 8px;
+	margin-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1.5px solid #253144;
+	border-top: none;
+}
+
+#cpu, #memory, #custom-media, #clock, #pulseaudio {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+#clock {
+	margin-right: 8px;
+}
+
+#tray, #custom-launcher {
+	background: #253144;
+	color: #cccccc;
+	font-size: 24px;
+	border-color: #cccccc;
+}
+
+#tray {
+	margin-left: 0px;
+	border-left: none;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+#custom-launcher {
+	margin-left: 0px;
+	padding-right: 6px;
+	border-left: none;
+	border-bottom-left-radius: 0px;
+}
+
+#memory {
+	margin-right: 0px;
+	border-radius: 0px 0px 0px 10px;
+	border-right: none;
+}
+
+#cpu {
+	margin-right: 0px;
+	margin-left: 0px;
+	border-radius: 0px;
+	border-right: none;
+	border-left: none;
+}
+
+#clock {
+	margin-left: 0px;
+	margin-right: 0px;
+	border-right: none;
+	border-radius: 0px;
+}

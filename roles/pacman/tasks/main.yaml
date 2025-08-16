@@ -1,0 +1,15 @@
+---
+- name: "Configure pacman"
+  ansible.builtin.include_tasks:
+    file: "configure.yaml"
+  tags: ["packages", "pacman", "pacman_conf", "mirrorlist"]
+
+- name: "Include package upgrade tasks"
+  ansible.builtin.include_tasks:
+    file: "upgrade.yaml"
+  tags: ["packages", "pacman", "upgrade_packages"]
+
+- name: "Include package installation tasks"
+  ansible.builtin.include_tasks:
+    file: "install.yaml"
+  tags: ["packages", "pacman", "install_packages"]

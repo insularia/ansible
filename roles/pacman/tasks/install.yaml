@@ -1,0 +1,7 @@
+---
+- name: "Install pacman packages"
+  community.general.pacman:
+    name: "{{ pacman_packages }}"
+    state: present
+  become: true
+  tags: ["packages", "pacman", "install_packages"]

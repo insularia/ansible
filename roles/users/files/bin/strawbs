@@ -1,0 +1,6 @@
+#!/bin/bash
+
+file=`find /home/amber/Music -type f \( -iname "*.flac" -o -iname "*.mp3" \) | shuf -n 1`
+dir=`dirname "$file"`
+
+find "$dir" -type f \( -iname "*.flac" -o -iname "*.mp3" \) | sort -V | xargs -d '\n' strawberry -a

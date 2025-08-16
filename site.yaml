@@ -1,0 +1,14 @@
+---
+- name: "Everything"
+  hosts: all
+  become: true
+  become_method: ansible.builtin.su
+  roles:
+    - role: "pacman"
+      tags: ["pacman"]
+    - role: "system"
+      tags: ["system"]
+    - role: "users"
+      tags: ["users"]
+    - role: "aur"
+      tags: ["aur"]

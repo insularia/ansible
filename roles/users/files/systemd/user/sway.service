@@ -1,0 +1,16 @@
+[Unit]
+Description=Sway Window Manager
+
+StartLimitIntervalSec=7200
+StartLimitBurst=10
+
+[Service]
+
+Environment="WLR_BACKENDS=headless"
+ExecStart=/usr/bin/sway
+
+KillMode=mixed
+KillSignal=SIGQUIT
+TimeoutStopSec=5s
+
+[Install]
